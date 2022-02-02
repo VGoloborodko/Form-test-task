@@ -1,36 +1,3 @@
-// const form = document.querySelector('form');
-// const result = document.querySelector('.result');
-// const clue = document.querySelector('.clue');
-// const policy = document.querySelector('.policy');
-
-// var regexp = /[а-яё]/i;
-
-// form.addEventListener('submit', event => {
-//     event.preventDefault();
-
-//     if (regexp.test(policy.value)) {
-//         console.log('успешно')
-//     } else {
-//         console.log('ошибка')
-//     }
-
-//     const data = new FormData(event.target);
-
-//     let fullName = document.createElement('p');
-//     result.append(fullName);
-//     fullName.classList.add('meaning-forms');
-//     fullName.innerHTML = `${data.get('firstName')} ${data.get('lastName')}`;
-
-//     let policy = document.createElement('p');
-//     result.append(policy);
-//     policy.classList.add('meaning-forms');
-//     policy.innerHTML = `Номер полиса: ${data.get('policy')}`;
-
-//     clue.innerHTML = ''
-
-//     event.target.reset();
-// })
-
 const form = document.querySelector('form');
 form.addEventListener('submit', formSend);
 
@@ -44,20 +11,20 @@ lastName.addEventListener('keyup', noSpaces);
 const firstName = document.querySelector('.firstName');
 firstName.addEventListener('keyup', noSpaces);
 
+const clue = document.querySelector('.clue');
+const result = document.querySelector('.result');
+const date = document.querySelector('.date');
+
 function noSpaces() {
     lastName.value = lastName.value.replace(/[\s]/g, '');
     firstName.value = firstName.value.replace(/[\s]/g, '');
 }
 
-async function formSend(e) {
-    e.preventDefault();
+async function formSend(event) {
+    event.preventDefault();
 
-    let error = formValidate(form);
-}
-
-function formValidate(form) {
-    let error = 0;
     let formReq = document.querySelectorAll('.req');
+    let error = 0;
 
     for(let i = 0; i < formReq.length; i++) {
         const input = formReq[i];
@@ -67,24 +34,55 @@ function formValidate(form) {
             if (policyTest(input)) {
                 formAddError(input);
                 error++;
+            } if (clue.innerHTML === '') {
+                formRemoveError(input);
             }
         } else if (input.classList.contains('lastName')) {
             if (fullNameTest(input)){
                 formAddError(input);
                 error++;
+            }if (clue.innerHTML === '') {
+                formRemoveError(input);
             }
         } else if (input.classList.contains('firstName')) {
             if (fullNameTest(input)){
                 formAddError(input);
                 error++;
+            }if (clue.innerHTML === '') {
+                formRemoveError(input);
             }
-        }else {
+        } else {
             if (input.value === '') {
-                formAddError(input);
-                error++;
+                if (clue.innerHTML === '') {
+                    formRemoveError(input);
+                } else {
+                    formAddError(input);
+                    error++;
+                }
             }
         }
     }
+
+    // const data = new FormData(event.target);
+
+    // if (policy.value === '' && lastName.value === '' && firstName.value === '' && date.value === '') {
+    //     console.log('error')
+    // } else {
+    //     let fullName = document.createElement('p');
+    //     result.append(fullName);
+    //     fullName.classList.add('meaning-forms');
+    //     fullName.innerHTML = `${data.get('firstName')} ${data.get('lastName')}`;
+
+    //     let policy = document.createElement('p');
+    //     result.append(policy);
+    //     policy.classList.add('meaning-forms');
+    //     policy.innerHTML = `Номер полиса: ${data.get('policy')}`;
+
+    //     clue.innerHTML = ''
+
+    //     e.target.reset();
+    // }
+
 }
 
 function formAddError(input) {

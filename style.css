@@ -16,8 +16,12 @@ body {
     height: 100%;
 }
 
-input, button {
+input {
     outline: none;
+    border: none;
+}
+
+button {
     border: none;
 }
 
@@ -101,6 +105,10 @@ button {
 
     color: white;
     background: #175351;
+}
+
+button:hover {
+    background: #26a67a;
 }
 
 .result-checking {
