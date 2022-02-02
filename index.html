@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <div class="container">
+        <div class="form-block">
+            <h2>Форма проверки действительности полиса мигранта</h2>
+            <form>
+                <label>
+                    <span class="span">
+                        <span class="text-field">Номер полиса</span>
+                        <input class="policy req" name="policy" type="text">
+                    </span>
+                </label>
+                <label>
+                    <span class="span">
+                        <span class="text-field">Фамилия страховителя</span>
+                        <input class="lastName req" name="lastName" type="text">
+                    </span>
+                </label>
+                <label>
+                    <span class="span">
+                        <span class="text-field">Имя страховителя</span>
+                        <input class="firstName req" name="firstName" type="text">
+                    </span>
+                </label>
+                <label class="label-date">
+                    <span class="span">
+                        <span class="text-field">Дата рождения</span>
+                        <input class="date req" name="firstName" type="date">
+                    </span>
+                </label>
+                <button>ПРОВЕРИТЬ ПОЛИС</button>
+            </form>
+        </div>
+        <div class="result">
+            <p class="result-checking">РЕЗУЛЬТАТ ПРОВЕРКИ</p>
+            <p class="clue">Для проверки полиса <br>заполните все пустые поля</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
